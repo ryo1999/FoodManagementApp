@@ -10,27 +10,28 @@ import UseStyle from "./components/UseStyle"
 // import { dates } from "./utils/Date_management"
 import Modal from "./components/atoms/Modal"
 // import HomeIcon from '@mui/icons-material/Home';
+import { useModal } from "react-hooks-use-modal"
 
 type ModalSubjectProps = {
     title?: string
-    explanation: string
+    explanation: string | JSX.Element
     action?: () => void
 }
 
-// type actionTypeProps = {
-//     types:"waste"|"open"|"add"|"edit"|"delete"
-// }
+type ActionTypeProps = "waste" | "open" | "add" | "edit" | "delete"
 
 const App: React.FC = () => {
     const classes = UseStyle()
-    const [isModalOpen, setIsModalOpen] = React.useState(false)
+    const [ModalContent, modalOpen, modalClose, isModalOpen] = useModal("root", {
+        preventScroll: false,
+    })
     const [modalSubject, setModalSentence] = React.useState<ModalSubjectProps>({
         title: "",
         explanation: "",
     })
 
-    const handleModalOpen = (actionType: "waste" | "open" | "add" | "edit" | "delete") => {
-        setIsModalOpen(true)
+    const handleModalOpen = (actionType: ActionTypeProps) => {
+        modalOpen()
         switch (actionType) {
             case "waste":
                 let subject = {
@@ -51,13 +52,18 @@ const App: React.FC = () => {
             case "edit":
                 setModalSentence({
                     title: "",
-                    explanation: `編集${(<br />)}しますか?`,
+                    explanation: (
+                        <div>
+                            <div>編集</div>しますか?
+                        </div>
+                    ),
                 })
                 break
             case "delete":
                 setModalSentence({ title: "", explanation: "を削除します。よろしいですか？" })
                 break
         }
+        modalOpen()
     }
 
     return (
@@ -125,7 +131,12 @@ const App: React.FC = () => {
             </ModalDelete2> */}
 
             {/* 開封モーダル */}
-            {isModalOpen && <Modal modalSubject={modalSubject} setIsModalOpen={setIsModalOpen} />}
+            <Modal
+                modalSubject={modalSubject}
+                ModalContent={ModalContent}
+                isModalOpen={isModalOpen}
+                modalClose={modalClose}
+            />
 
             {/* 歯車アイコン */}
             <div className="settingbutton">

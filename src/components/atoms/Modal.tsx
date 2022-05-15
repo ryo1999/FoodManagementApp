@@ -6,20 +6,17 @@ import { useModal } from "react-hooks-use-modal"
 type ModalProps = {
     modalSubject: {
         title?: string
-        explanation: string
+        explanation: string | JSX.Element
         action?: () => void
     }
-    setIsModalOpen: (v: boolean) => void
+    ModalContent: React.FC<{
+        children: React.ReactNode
+    }>
+    modalClose: () => void
+    isModalOpen: boolean
 }
 const Modal: React.FC<ModalProps> = (props) => {
-    const { modalSubject, setIsModalOpen } = props
-    const [ModalContent, modalOpen, modalClose] = useModal("root", {
-        preventScroll: false,
-    })
-
-    React.useEffect(() => {
-        modalOpen()
-    }, [modalOpen])
+    const { modalSubject, ModalContent, modalClose } = props
 
     return (
         <>
@@ -34,7 +31,6 @@ const Modal: React.FC<ModalProps> = (props) => {
                                 className="button"
                                 onClick={() => {
                                     modalClose()
-                                    setIsModalOpen(false)
                                 }}
                             >
                                 キャンセル
@@ -43,7 +39,6 @@ const Modal: React.FC<ModalProps> = (props) => {
                                 className="button"
                                 onClick={() => {
                                     modalClose()
-                                    setIsModalOpen(false)
                                     //   modalSubject.action()
                                 }}
                             >
