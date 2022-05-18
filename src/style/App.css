@@ -1,8 +1,13 @@
-.settingbutton{
-    text-align: right;
-    padding-right: 30px;
+/* 一番上に余白 */
+/* body {
+    padding-top: 20px;
+} */
+
+/* 曜日によって色変更 */
+.fc-col-header-cell-cushion[aria-label="日曜日"] {
+    color: red;
 }
-.wastebutton{
-    text-align: right;
-    padding-right:30px
+.fc-col-header-cell-cushion[aria-label="土曜日"] {
+    color: blue;
 }
+
