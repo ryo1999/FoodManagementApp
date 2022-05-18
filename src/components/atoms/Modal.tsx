@@ -1,7 +1,7 @@
 // import { dates } from "../../utils/Date_management"
 import React from "react"
 import "../../style/Modal.css"
-import { useModal } from "react-hooks-use-modal"
+// import { useModal } from "react-hooks-use-modal"
 
 type ModalProps = {
     modalSubject: {

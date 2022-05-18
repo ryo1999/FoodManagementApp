@@ -1,216 +1,207 @@
-import React from "react"
 import "./style/App.css"
-import "./style/Modal.css"
-// import { useModal } from "react-hooks-use-modal"
-import Button from "@material-ui/core/Button"
-import { IconButton } from "@material-ui/core"
-// import Grid from "@material-ui/core/Grid"
-import SettingsIcon from "@mui/icons-material/Settings"
-import UseStyle from "./components/UseStyle"
-// import { dates } from "./utils/Date_management"
-import Modal from "./components/atoms/Modal"
-// import HomeIcon from '@mui/icons-material/Home';
-import { useModal } from "react-hooks-use-modal"
+import React from "react"
+import clsx from "clsx"
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import Drawer from "@material-ui/core/Drawer"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import List from "@material-ui/core/List"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import Divider from "@material-ui/core/Divider"
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
+import SettingsIcon from "@material-ui/icons/Settings"
+import HomeIcon from "@material-ui/icons/Home"
+import StorageIcon from "@material-ui/icons/Storage"
+// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from "@material-ui/core/ListItem"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemText from "@material-ui/core/ListItemText"
+import FullCalendar from "@fullcalendar/react"
+import dayGridPlugin from "@fullcalendar/daygrid"
+import allLocales from "@fullcalendar/core/locales-all"
 
-type ModalSubjectProps = {
-    title?: string
-    explanation: string | JSX.Element
-    action?: () => void
-}
+const drawerWidth = 220
 
-type ActionTypeProps = "waste" | "open" | "add" | "edit" | "delete"
+const UseStyle = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: "flex",
+        },
+        appBar: {
+            zIndex: theme.zIndex.drawer + 1,
+            transition: theme.transitions.create(["width", "margin"], {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+            }),
+        },
+        appBarShift: {
+            marginLeft: drawerWidth,
+            width: `calc(100% - ${drawerWidth}px)`,
+            transition: theme.transitions.create(["width", "margin"], {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+        },
+        menuButton: {
+            marginRight: 36,
+        },
+        hide: {
+            display: "none",
+        },
+        drawer: {
+            width: drawerWidth,
+            flexShrink: 0,
+            whiteSpace: "nowrap",
+        },
+        drawerOpen: {
+            width: drawerWidth,
+            transition: theme.transitions.create("width", {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+        },
+        drawerClose: {
+            transition: theme.transitions.create("width", {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+            }),
+            overflowX: "hidden",
+            width: theme.spacing(7) + 1,
+            [theme.breakpoints.up("sm")]: {
+                width: theme.spacing(9) + 1,
+            },
+        },
+        toolbar: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            padding: theme.spacing(0, 1),
+            // necessary for content to be below app bar
+            ...theme.mixins.toolbar,
+        },
+        content: {
+            flexGrow: 1,
+            padding: theme.spacing(3, 0, 0, 0),
+        },
+        icon: {
+            margin: theme.spacing(2, 0),
+        },
+        home: {
+            display: "flex",
+        },
+        box: {
+            width:"100px",
+            flex: "0 0 auto",
+            margin:theme.spacing(5,0,0,0)
+        },
+    })
+)
 
 const App: React.FC = () => {
     const classes = UseStyle()
-    const [ModalContent, modalOpen, modalClose, isModalOpen] = useModal("root", {
-        preventScroll: false,
-    })
-    const [modalSubject, setModalSentence] = React.useState<ModalSubjectProps>({
-        title: "",
-        explanation: "",
-    })
+    // const theme = useTheme()
+    const [open, setOpen] = React.useState(false)
+    const keyword = ["ホーム", "在庫管理", "食材データ設定"]
 
-    const handleModalOpen = (actionType: ActionTypeProps) => {
-        modalOpen()
-        switch (actionType) {
-            case "waste":
-                let subject = {
-                    title: "",
-                    explanation: "廃棄します。よろしいですか？",
-                    action: () => {
-                        console.log("廃棄処理")
-                    },
-                }
-                setModalSentence(subject)
-                break
-            case "open":
-                setModalSentence({ title: "開封登録", explanation: "日付を入力" })
-                break
-            case "add":
-                setModalSentence({ title: "", explanation: "追加" })
-                break
-            case "edit":
-                setModalSentence({
-                    title: "",
-                    explanation: (
-                        <div>
-                            <div>編集</div>しますか?
-                        </div>
-                    ),
-                })
-                break
-            case "delete":
-                setModalSentence({ title: "", explanation: "を削除します。よろしいですか？" })
-                break
-        }
-        modalOpen()
+    const handleDrawerOpen = () => {
+        setOpen(true)
+    }
+
+    const handleDrawerClose = () => {
+        setOpen(false)
     }
 
     return (
-        <div>
-            {/* <ModalWaste>
-                <div className="modalStyle">
-                    <p>〜を廃棄します。</p>
-                    <p>よろしいですか？</p>
-                    <div className="judge">
-                        <button className="judge" onClick={close}>
-                            いいえ
-                        </button>
-                        <button className="judge" onClick={close}>
-                            はい
-                        </button>
-                    </div>
-                </div>
-            </ModalWaste> */}
-            {/* 開封モーダル */}
-            {/* <ModalOpened>
-                <div className="modalStyle">
-                    <h2>開封登録</h2>
-                    <p>日付を入力</p>
-                    <input type="date" id="date" defaultValue={dates.date} />
-                    <button
-                        className="button"
-                        onClick={() => {
-                            close_opened()
-                            Add()
-                        }}
+        <div className={classes.root}>
+            <CssBaseline />
+            <AppBar
+                position="fixed"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
+                })}
+            >
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        className={clsx(classes.menuButton, {
+                            [classes.hide]: open,
+                        })}
                     >
-                        登録
-                    </button>
+                        <MenuIcon />
+                    </IconButton>
+                    <section>
+                        <h2>ホーム</h2>
+                    </section>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                variant="permanent"
+                className={clsx(classes.drawer, {
+                    [classes.drawerOpen]: open,
+                    [classes.drawerClose]: !open,
+                })}
+                classes={{
+                    paper: clsx({
+                        [classes.drawerOpen]: open,
+                        [classes.drawerClose]: !open,
+                    }),
+                }}
+            >
+                <div className={classes.toolbar}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {/* {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
+                        <ChevronLeftIcon fontSize="large" />
+                    </IconButton>
                 </div>
-            </ModalOpened> */}
-            {/* 削除モーダル */}
-            {/* <ModalDelete>
-                <div className="modalStyle">
-                    <p>〜を削除します。</p>
-                    <p>よろしいですか？</p>
-                    <div className="judge">
-                        <button className="judge" onClick={close_delete}>
-                            いいえ
-                        </button>
-                        <button className="judge" onClick={close_delete}>
-                            はい
-                        </button>
+                <Divider />
+                <List>
+                    {[
+                        <HomeIcon className={classes.icon} fontSize="large" />,
+                        <StorageIcon className={classes.icon} fontSize="large" />,
+                        <SettingsIcon className={classes.icon} fontSize="large" />,
+                    ].map((item, index) => (
+                        <ListItem button key={keyword[index]}>
+                            <ListItemIcon>{item}</ListItemIcon>
+                            <ListItemText primary={keyword[index]} />
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+            </Drawer>
+            <div className={classes.content}>
+                <div className={classes.toolbar} />
+                <div className={classes.home}>
+                    <div className={classes.box}>
+                        <section>
+                            <h3>廃棄忘れ</h3>
+                        </section>
+                    </div>
+                    <div className="calendar-header">
+                        <FullCalendar
+                            headerToolbar={{
+                                left: "",
+                                center: "title",
+                                right: "prev,next",
+                            }}
+                            contentHeight="auto"
+                            plugins={[dayGridPlugin]}
+                            initialView="dayGridMonth"
+                            locales={allLocales}
+                            locale="ja"
+                        />
+                    </div>
+                    <div className={classes.box}>
+                        <section>
+                            <h3>今月の廃棄済み</h3>
+                        </section>
                     </div>
                 </div>
-            </ModalDelete> */}
-            {/* 削除モーダル2 */}
-            {/* <ModalDelete2>
-                <div className="modalStyle">
-                    <p>〜の食材データを削除します。</p>
-                    <p>よろしいですか？</p>
-                    <div className="judge">
-                        <button className="judge" onClick={close_delete2}>
-                            いいえ
-                        </button>
-                        <button className="judge" onClick={close_delete2}>
-                            はい
-                        </button>
-                    </div>
-                </div>
-            </ModalDelete2> */}
-
-            {/* 開封モーダル */}
-            <Modal
-                modalSubject={modalSubject}
-                ModalContent={ModalContent}
-                isModalOpen={isModalOpen}
-                modalClose={modalClose}
-            />
-
-            {/* 歯車アイコン */}
-            <div className="settingbutton">
-                <IconButton>
-                    <SettingsIcon className={classes.setting} fontSize="large" />
-                </IconButton>
             </div>
-
-            {/* ホーム画面 */}
-            {/* 廃棄ボタン */}
-            <div className="wastebutton">
-                <Button
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => {
-                        handleModalOpen("waste")
-                    }}
-                >
-                    廃棄
-                </Button>
-            </div>
-
-            {/* 在庫管理画面 */}
-            <div className="Stockbutton">
-                <Button
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => {
-                        handleModalOpen("open")
-                    }}
-                >
-                    開封
-                </Button>
-                <Button
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => {
-                        handleModalOpen("add")
-                    }}
-                >
-                    追加
-                </Button>
-                <Button
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => {
-                        handleModalOpen("edit")
-                    }}
-                >
-                    編集
-                </Button>
-                <Button
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => {
-                        handleModalOpen("delete")
-                    }}
-                >
-                    削除
-                </Button>
-            </div>
-
-            {/* 食材データベース管理画面 */}
-            {/* <div className="Databutton">
-                <Button className={classes.button} variant="contained">
-                    追加
-                </Button>
-                <Button className={classes.button} variant="contained">
-                    編集
-                </Button>
-                <Button className={classes.button} variant="contained" onClick={open}>
-                    削除
-                </Button>
-            </div> */}
         </div>
     )
 }
