@@ -1,4 +1,4 @@
-// import "./style/App.css"
+import "./style/App.css"
 import React from "react"
 
 import Template from "./components/templates/template"

@@ -7,8 +7,8 @@
   "extends": [
       "eslint:recommended",
       "plugin:react/recommended",
-      //"plugin:@typescript-eslint/recommended",
-      "plugin:import/warnings",
+    //   "plugin:@typescript-eslint/recommended",
+    //   "plugin:import/warnings",
       "plugin:import/typescript",
       "prettier"
   ],
@@ -30,8 +30,9 @@
   "rules": {
       "react/prop-types": "off", //is missing in props validation  react/prop-typesエラー消し
       "react/display-name": "off",
+    //   "unused-imports/no-unused-imports": "warn",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["error"],
+    //   "@typescript-eslint/no-unused-vars": ["warn"],
       "@typescript-eslint/ban-types": [
           "error",
           {
@@ -40,13 +41,13 @@
                   "{}": false
               }
           }
-      ],
-      "import/order": [
-          "warn",
-          {
-              "alphabetize": { "order": "asc" },
-              "newlines-between": "always"
-          }
       ]
+    //   "import/order": [
+    //       "warn",
+    //       {
+    //           "alphabetize": { "order": "asc" },
+    //           "newlines-between": "always"
+    //       }
+    //   ]
   }
 }

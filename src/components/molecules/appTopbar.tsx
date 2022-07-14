@@ -10,16 +10,15 @@ import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import SettingsIcon from "@material-ui/icons/Settings"
+// import SettingsIcon from "@material-ui/icons/Settings"
 import HomeIcon from "@material-ui/icons/Home"
 import StorageIcon from "@material-ui/icons/Storage"
 // import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
-import { PropaneSharp } from "@mui/icons-material"
 
-const drawerWidth = 220
+const drawerWidth = 200
 
 const UseStyle = makeStyles((theme: Theme) =>
     createStyles({
@@ -42,7 +41,8 @@ const UseStyle = makeStyles((theme: Theme) =>
             }),
         },
         menuButton: {
-            marginRight: 36,
+            marginRight: "36px",
+            marginLeft: "-20px",
         },
         hide: {
             display: "none",
@@ -65,10 +65,10 @@ const UseStyle = makeStyles((theme: Theme) =>
                 duration: theme.transitions.duration.leavingScreen,
             }),
             overflowX: "hidden",
-            width: theme.spacing(7) + 1,
-            [theme.breakpoints.up("sm")]: {
-                width: theme.spacing(9) + 1,
-            },
+            width: theme.spacing(7) + 3,
+            // [theme.breakpoints.up("sm")]: {
+            //     width: theme.spacing(9) + 1,
+            // },
         },
         toolbar: {
             display: "flex",
@@ -78,10 +78,6 @@ const UseStyle = makeStyles((theme: Theme) =>
             // necessary for content to be below app bar
             ...theme.mixins.toolbar,
         },
-        content: {
-            flexGrow: 1,
-            padding: theme.spacing(3, 0, 0, 0),
-        },
         icon: {
             margin: theme.spacing(2, 0),
         },
@@ -90,13 +86,21 @@ const UseStyle = makeStyles((theme: Theme) =>
 
 type AppTopbarProps = {
     children: React.ReactNode
+    page:string
+    setPage:(page:string) => void
 }
 
 const AppTopbar: React.FC<AppTopbarProps> = (props) => {
     const classes = UseStyle()
     // const theme = useTheme()
+    const {page, setPage} = props
+    // const [page, setPage] = React.useState("home")
     const [open, setOpen] = React.useState(false)
-    const keyword = ["ホーム", "在庫管理", "食材データ設定"]
+    const keywords = [
+        { name: "ホーム", pagename: "home" },
+        { name: "食材データ管理", pagename: "storage" },
+        // { name: "編集", pagename: "setting" },
+    ]
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -128,7 +132,9 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <section>
-                        <h2>ホーム</h2>
+                        {page === "home" && <h2>ホーム</h2>}
+                        {page === "storage" && <h2>食材データ管理</h2>}
+                        {/* {page === "setting" && <h2>編集</h2>} */}
                     </section>
                 </Toolbar>
             </AppBar>
@@ -147,20 +153,19 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
             >
                 <div className={classes.toolbar}>
                     <IconButton onClick={handleDrawerClose}>
-                        {/* {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
                         <ChevronLeftIcon fontSize="large" />
                     </IconButton>
                 </div>
                 <Divider />
                 <List>
                     {[
-                        <HomeIcon className={classes.icon} fontSize="large" />,
-                        <StorageIcon className={classes.icon} fontSize="large" />,
-                        <SettingsIcon className={classes.icon} fontSize="large" />,
+                        <HomeIcon key="home" className={classes.icon} />,
+                        <StorageIcon key="stock" className={classes.icon} />,
+                        // <SettingsIcon key="setting" className={classes.icon} />,
                     ].map((item, index) => (
-                        <ListItem button key={keyword[index]}>
+                        <ListItem onClick={() => setPage(keywords[index].pagename)} button key={keywords[index].name}>
                             <ListItemIcon>{item}</ListItemIcon>
-                            <ListItemText primary={keyword[index]} />
+                            <ListItemText primary={keywords[index].name} />
                         </ListItem>
                     ))}
                 </List>
