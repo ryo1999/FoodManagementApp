@@ -1,22 +1,22 @@
 import { getUnixTime } from "date-fns"
-type productStates = "forget" | "unOpened" | "wasted" | "needWaste" | "storage"
+// type productStates = "forget" | "unOpened" | "wasted" | "needWaste" | "storage"
 
-type ProductData = {
-    date: string
-    productName: string
-    productState: productStates
-}[]
+// type ProductData = {
+//     date: string
+//     productName: string
+//     productState: productStates
+// }[]
 
-type ProductData2 = {
-    date: Date[]
-    productName: string
-    productState: productStates
-    limit: number
-    stock: number
-    unit: string
-}
+// type ProductData2 = {
+//     date: Date[]
+//     productName: string
+//     productState: productStates
+//     limit: number
+//     stock: number
+//     unit: string
+// }
 
-export const productData: ProductData = [
+export const productData = [
     {
         date: "2022/5/10",
         productName: "ポテトチップス",
@@ -34,7 +34,7 @@ export const productData: ProductData = [
     },
 ]
 
-export const wastedData: ProductData = [
+export const wastedData = [
     {
         date: "2022/5/10",
         productName: "ポテトチップス",
@@ -52,7 +52,7 @@ export const wastedData: ProductData = [
     },
 ]
 
-export const todayWasteData: ProductData = [
+export const todayWasteData = [
     {
         date: "2022/5/20",
         productName: "ポップコーン",
@@ -60,7 +60,7 @@ export const todayWasteData: ProductData = [
     },
 ]
 
-export const fogetData: ProductData = [
+export const fogetData = [
     {
         date: "2022/5/10",
         productName: "ポテトチップス",
@@ -68,7 +68,7 @@ export const fogetData: ProductData = [
     },
 ]
 
-export const unOpendData: ProductData = [
+export const unOpendData = [
     {
         date: "2022/5/10",
         productName: "ポテトチップス",
