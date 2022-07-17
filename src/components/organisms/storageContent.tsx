@@ -8,13 +8,13 @@ import TableContainer from "@material-ui/core/TableContainer"
 import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
-import { storageData } from "../../mock/mock"
+import { storageData } from "@/mock/mock"
 import SaveIcon from "@material-ui/icons/Save"
 import EditIcon from "@material-ui/icons/Edit"
 import CloseIcon from "@material-ui/icons/Close"
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
-import StorageContentTable from "../molecules/storageContentTable"
-import StorageDataType from "../../mock/mock"
+import StorageContentTable from "@/components/molecules/storageContentTable"
+import StorageDataType from "@/mock/mock"
 
 const UseStyle = makeStyles((theme: Theme) =>
     createStyles({

@@ -1,8 +1,8 @@
 import React from "react"
-import HomeContentCard from "../molecules/homeContentCard"
-import Calendar from "../molecules/Calendar"
-import HomeContentButton from "../molecules/homeContentButton"
-// import AppTopbar from "../molecules/appTopbar"
+import HomeContentCard from "@/components/molecules/homeContentCard"
+import Calendar from "@/components/molecules/Calendar"
+import HomeContentButton from "@/components/molecules/homeContentButton"
+// import AppTopbar from "@/components/molecules/appTopbar"
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 

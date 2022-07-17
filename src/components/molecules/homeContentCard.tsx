@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox, { CheckboxProps } from "@material-ui/core/Checkbox"
-import { fogetData, wastedData, todayWasteData } from "../../mock/mock"
+import { fogetData, wastedData, todayWasteData } from "@/mock/mock"
 
 const UseStyle = makeStyles((theme: Theme) =>
     createStyles({

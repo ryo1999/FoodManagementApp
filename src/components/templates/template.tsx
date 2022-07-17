@@ -1,11 +1,10 @@
 import React from "react"
-import AppTopbar from "../molecules/appTopbar"
-// import ManageContent from "../organisms/manageContent"
-import StorageContent from "../organisms/storageContent"
+import AppTopbar from "@/components/molecules/appTopbar"
+import StorageContent from "@/components/organisms/storageContent"
 
 // import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 
-import HomeContent from "../organisms/homeContent"
+import HomeContent from "@/components/organisms/homeContent"
 
 const Template: React.FC = () => {
     const [page, setPage] = React.useState("home")
@@ -14,7 +13,6 @@ const Template: React.FC = () => {
             <AppTopbar page={page} setPage={setPage}>
                 {page === "home" && <HomeContent />}
                 {page === "storage" && <StorageContent />}
-                {/* {page === "setting" && <SettingContent />} */}
             </AppTopbar>
         </>
     )

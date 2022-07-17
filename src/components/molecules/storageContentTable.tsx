@@ -13,7 +13,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown"
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp"
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
 import DeleteIcon from "@material-ui/icons/Delete"
-import StorageDataType from "../../mock/mock"
+import StorageDataType from "@/mock/mock"
 import {format} from "date-fns"
 
 const UseStyle = makeStyles((theme: Theme) =>
