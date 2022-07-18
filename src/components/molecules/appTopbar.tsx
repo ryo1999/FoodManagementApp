@@ -10,13 +10,12 @@ import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-// import SettingsIcon from "@material-ui/icons/Settings"
 import HomeIcon from "@material-ui/icons/Home"
 import StorageIcon from "@material-ui/icons/Storage"
-// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
+import { useRouter } from "next/router"
 
 const drawerWidth = 200
 
@@ -42,7 +41,7 @@ const UseStyle = makeStyles((theme: Theme) =>
         },
         menuButton: {
             marginRight: "36px",
-            marginLeft: "-20px",
+            marginLeft: "-22px",
         },
         hide: {
             display: "none",
@@ -80,24 +79,22 @@ const UseStyle = makeStyles((theme: Theme) =>
         },
         icon: {
             margin: theme.spacing(2, 0),
+            fontSize:"30px",
         },
     })
 )
 
 type AppTopbarProps = {
     children: React.ReactNode
-    page:string
-    setPage:(page:string) => void
+    page: string
+    setPage: (page: string) => void
 }
 
 const AppTopbar: React.FC<AppTopbarProps> = (props) => {
+    const router = useRouter()
     const classes = UseStyle()
-    const {page, setPage} = props
+    const { page, setPage } = props
     const [open, setOpen] = React.useState(false)
-    const keywords = [
-        { name: "ホーム", pagename: "Home" },
-        { name: "食材データ管理", pagename: "Storage" },
-    ]
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -105,6 +102,9 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
 
     const handleDrawerClose = () => {
         setOpen(false)
+    }
+    const handleMenuButton = (url:string) => {
+        router.push(url)
     }
 
     return (
@@ -126,7 +126,7 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
                             [classes.hide]: open,
                         })}
                     >
-                        <MenuIcon />
+                        <MenuIcon fontSize="large"/>
                     </IconButton>
                     <section>
                         {page === "Home" && <h2>ホーム</h2>}
@@ -154,15 +154,14 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
                 </div>
                 <Divider />
                 <List>
-                    {[
-                        <HomeIcon key="home" className={classes.icon} />,
-                        <StorageIcon key="stock" className={classes.icon} />,
-                    ].map((item, index) => (
-                        <ListItem onClick={() => setPage(keywords[index].pagename)} button key={keywords[index].name}>
-                            <ListItemIcon>{item}</ListItemIcon>
-                            <ListItemText primary={keywords[index].name} />
-                        </ListItem>
-                    ))}
+                    <ListItem button onClick={()=>handleMenuButton("/Home")}>
+                        <ListItemIcon><HomeIcon className={classes.icon} /></ListItemIcon>
+                        <ListItemText primary={"ホーム"} />
+                    </ListItem>
+                    <ListItem button onClick={()=>handleMenuButton("/Storage")}>
+                        <ListItemIcon><StorageIcon className={classes.icon} /></ListItemIcon>
+                        <ListItemText primary={"食材データ管理"} />
+                    </ListItem>
                 </List>
                 <Divider />
             </Drawer>
