@@ -2,30 +2,27 @@ import React from "react"
 import HomeContentCard from "@/components/molecules/homeContentCard"
 import Calendar from "@/components/molecules/calendar"
 import HomeContentButton from "@/components/molecules/homeContentButton"
-// import AppTopbar from "@/components/molecules/appTopbar"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 
 const UseStyle = makeStyles((theme: Theme) =>
     createStyles({
         content: {
-            flexGrow: 1,
-            // padding: theme.spacing(0, 0, 0, 0),
+            flexGrow: 0,
         },
         toolbar: theme.mixins.toolbar,
         home: {
             display: "flex",
-            // alignItems: "flex-start",
         },
         calendar: {
             flex: "0 0 60%",
         },
-        homecontentcard: {
+        homeContentCard: {
             flex: "0 0 40%",
         },
     })
 )
 
-const HomeContent: React.FC = (props) => {
+const HomeContent: React.FC = () => {
     const classes = UseStyle()
 
     return (
@@ -37,7 +34,7 @@ const HomeContent: React.FC = (props) => {
                         <Calendar />
                         <HomeContentButton />
                     </div>
-                    <div className={classes.homecontentcard}>
+                    <div className={classes.homeContentCard}>
                         <HomeContentCard />
                     </div>
                 </div>

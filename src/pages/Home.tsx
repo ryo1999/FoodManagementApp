@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic"
 import React from "react"
-// import AppTopbar from "@/components/molecules/appTopbar"
 const AppTopbar = dynamic(() => import("@/components/molecules/appTopbar"), {
     ssr: false,
 })

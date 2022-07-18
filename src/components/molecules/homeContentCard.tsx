@@ -32,9 +32,6 @@ const UseStyle = makeStyles((theme: Theme) =>
         wasteTitle: {
             textAlign: "center",
         },
-        // wasteInformation: {
-        //     flex: "0 0 40%",
-        // },
         check: {
             padding: "0px 0px 0px 15px",
         },

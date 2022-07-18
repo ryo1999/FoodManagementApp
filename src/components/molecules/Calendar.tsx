@@ -13,9 +13,11 @@ const UseStyle = makeStyles((theme: Theme) =>
             height: "92%",
         },
         calendarCard: {
+            height:"90%",
             margin: "0px 10px",
             padding: "12px",
             minWidth: "400px",
+            flex:"0 0 100%",
         },
     })
 )

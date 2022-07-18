@@ -40,7 +40,7 @@ const UseStyle = makeStyles((theme: Theme) =>
             }),
         },
         menuButton: {
-            marginRight: "36px",
+            marginRight: "25px",
             marginLeft: "-22px",
         },
         hide: {
