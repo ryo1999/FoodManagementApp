@@ -95,8 +95,8 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
     const {page, setPage} = props
     const [open, setOpen] = React.useState(false)
     const keywords = [
-        { name: "ホーム", pagename: "home" },
-        { name: "食材データ管理", pagename: "storage" },
+        { name: "ホーム", pagename: "Home" },
+        { name: "食材データ管理", pagename: "Storage" },
     ]
 
     const handleDrawerOpen = () => {
@@ -157,7 +157,6 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
                     {[
                         <HomeIcon key="home" className={classes.icon} />,
                         <StorageIcon key="stock" className={classes.icon} />,
-                        // <SettingsIcon key="setting" className={classes.icon} />,
                     ].map((item, index) => (
                         <ListItem onClick={() => setPage(keywords[index].pagename)} button key={keywords[index].name}>
                             <ListItemIcon>{item}</ListItemIcon>
