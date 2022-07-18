@@ -2,13 +2,15 @@ import React from "react"
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import allLocales from "@fullcalendar/core/locales-all"
+// import interactionPlugin from "@fullcalendar/interaction"
 import Card from "@material-ui/core/Card"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+// import dynamic from "next/dynamic"
 
 const UseStyle = makeStyles((theme: Theme) =>
     createStyles({
-        container:{
-            height:"92%",
+        container: {
+            height: "92%",
         },
         calendarCard: {
             margin: "0px 10px",

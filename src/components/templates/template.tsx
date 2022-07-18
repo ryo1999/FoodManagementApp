@@ -1,18 +1,18 @@
 import React from "react"
 import AppTopbar from "@/components/molecules/appTopbar"
 import StorageContent from "@/components/organisms/storageContent"
-
-// import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import {useRouter} from "next/router"
 
 import HomeContent from "@/components/organisms/homeContent"
 
 const Template: React.FC = () => {
-    const [page, setPage] = React.useState("home")
+    const router = useRouter()
+    const [page, setPage] = React.useState(router.pathname)
     return (
         <>
-            <AppTopbar page={page} setPage={setPage}>
-                {page === "home" && <HomeContent />}
-                {page === "storage" && <StorageContent />}
+            <AppTopbar page={page.slice(1)} setPage={setPage}>
+                {page === "/Home" && <HomeContent />}
+                {page === "/Storage" && <StorageContent />}
             </AppTopbar>
         </>
     )

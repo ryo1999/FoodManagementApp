@@ -3,8 +3,8 @@ import HomeContentCard from "@/components/molecules/homeContentCard"
 import Calendar from "@/components/molecules/Calendar"
 import HomeContentButton from "@/components/molecules/homeContentButton"
 // import AppTopbar from "@/components/molecules/appTopbar"
-
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import dynamic from "next/dynamic"
 
 const UseStyle = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,6 +25,13 @@ const UseStyle = makeStyles((theme: Theme) =>
         },
     })
 )
+
+// const Calendar = dynamic(
+//     () => import('@/components/molecules/Calendar'),
+//     {
+//        ssr: false,
+//     }
+// )
 
 const HomeContent: React.FC = (props) => {
     const classes = UseStyle()

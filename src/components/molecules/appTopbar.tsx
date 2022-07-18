@@ -92,14 +92,11 @@ type AppTopbarProps = {
 
 const AppTopbar: React.FC<AppTopbarProps> = (props) => {
     const classes = UseStyle()
-    // const theme = useTheme()
     const {page, setPage} = props
-    // const [page, setPage] = React.useState("home")
     const [open, setOpen] = React.useState(false)
     const keywords = [
         { name: "ホーム", pagename: "home" },
         { name: "食材データ管理", pagename: "storage" },
-        // { name: "編集", pagename: "setting" },
     ]
 
     const handleDrawerOpen = () => {
@@ -132,9 +129,8 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <section>
-                        {page === "home" && <h2>ホーム</h2>}
-                        {page === "storage" && <h2>食材データ管理</h2>}
-                        {/* {page === "setting" && <h2>編集</h2>} */}
+                        {page === "Home" && <h2>ホーム</h2>}
+                        {page === "Storage" && <h2>食材データ管理</h2>}
                     </section>
                 </Toolbar>
             </AppBar>

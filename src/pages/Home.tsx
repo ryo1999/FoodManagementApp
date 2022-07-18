@@ -8,7 +8,7 @@ const Template = dynamic(
     }
 )
 
-const App: React.FC = () => {
+const Home: React.FC = () => {
     return <Template />
 }
-export default App
+export default Home
