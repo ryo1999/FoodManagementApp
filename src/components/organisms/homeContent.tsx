@@ -26,18 +26,8 @@ const UseStyle = makeStyles((theme: Theme) =>
     })
 )
 
-// const Calendar = dynamic(
-//     () => import('@/components/molecules/Calendar'),
-//     {
-//        ssr: false,
-//     }
-// )
-
 const HomeContent: React.FC = (props) => {
     const classes = UseStyle()
-    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setState({ ...state, [event.target.name]: event.target.checked })
-    // }
 
     return (
         <>
