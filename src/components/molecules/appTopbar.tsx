@@ -79,7 +79,7 @@ const UseStyle = makeStyles((theme: Theme) =>
         },
         icon: {
             margin: theme.spacing(2, 0),
-            fontSize:"30px",
+            fontSize: "30px",
         },
     })
 )
@@ -87,13 +87,12 @@ const UseStyle = makeStyles((theme: Theme) =>
 type AppTopbarProps = {
     children: React.ReactNode
     page: string
-    setPage: (page: string) => void
 }
 
 const AppTopbar: React.FC<AppTopbarProps> = (props) => {
     const router = useRouter()
     const classes = UseStyle()
-    const { page, setPage } = props
+    const { page } = props
     const [open, setOpen] = React.useState(false)
 
     const handleDrawerOpen = () => {
@@ -103,7 +102,8 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
     const handleDrawerClose = () => {
         setOpen(false)
     }
-    const handleMenuButton = (url:string) => {
+
+    const handleMenuButton = (url: string) => {
         router.push(url)
     }
 
@@ -126,11 +126,10 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
                             [classes.hide]: open,
                         })}
                     >
-                        <MenuIcon fontSize="large"/>
+                        <MenuIcon fontSize="large" />
                     </IconButton>
                     <section>
-                        {page === "Home" && <h2>ホーム</h2>}
-                        {page === "Storage" && <h2>食材データ管理</h2>}
+                        <h2>{page}</h2>
                     </section>
                 </Toolbar>
             </AppBar>
@@ -154,12 +153,16 @@ const AppTopbar: React.FC<AppTopbarProps> = (props) => {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button onClick={()=>handleMenuButton("/Home")}>
-                        <ListItemIcon><HomeIcon className={classes.icon} /></ListItemIcon>
+                    <ListItem button onClick={() => handleMenuButton("/home")}>
+                        <ListItemIcon>
+                            <HomeIcon className={classes.icon} />
+                        </ListItemIcon>
                         <ListItemText primary={"ホーム"} />
                     </ListItem>
-                    <ListItem button onClick={()=>handleMenuButton("/Storage")}>
-                        <ListItemIcon><StorageIcon className={classes.icon} /></ListItemIcon>
+                    <ListItem button onClick={() => handleMenuButton("/storage")}>
+                        <ListItemIcon>
+                            <StorageIcon className={classes.icon} />
+                        </ListItemIcon>
                         <ListItemText primary={"食材データ管理"} />
                     </ListItem>
                 </List>

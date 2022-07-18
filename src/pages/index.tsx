@@ -23,12 +23,12 @@ const Sample: React.FC = () => {
     const classes = UseStyle()
 
     const handleClick = () => {
-        router.push("/Home")
+        router.push("/home")
     }
 
     return (
         <div>
-            <Button className={classes.button} onClick={handleClick}>ここをクリック</Button>
+            <Button className={classes.button} onClick={handleClick}>うんち</Button>
         </div>
     )
 }

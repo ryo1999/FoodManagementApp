@@ -1,11 +1,20 @@
 import dynamic from "next/dynamic"
 import React from "react"
-
-const Template = dynamic(() => import("@/components/templates/template"), {
+// import AppTopbar from "@/components/molecules/appTopbar"
+const AppTopbar = dynamic(() => import("@/components/molecules/appTopbar"), {
+    ssr: false,
+})
+const HomeContent = dynamic(() => import("@/components/organisms/homeContent"), {
     ssr: false,
 })
 
 const Home: React.FC = () => {
-    return <Template />
+    return (
+        <>
+            <AppTopbar page="ホーム">
+                <HomeContent />
+            </AppTopbar>
+        </>
+    )
 }
 export default Home

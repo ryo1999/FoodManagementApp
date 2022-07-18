@@ -1,6 +1,6 @@
 import React from "react"
 import HomeContentCard from "@/components/molecules/homeContentCard"
-import Calendar from "@/components/molecules/Calendar"
+import Calendar from "@/components/molecules/calendar"
 import HomeContentButton from "@/components/molecules/homeContentButton"
 // import AppTopbar from "@/components/molecules/appTopbar"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
@@ -19,8 +19,8 @@ const UseStyle = makeStyles((theme: Theme) =>
         calendar: {
             flex: "0 0 60%",
         },
-        homecontentcard:{
-            flex:"0 0 40%",
+        homecontentcard: {
+            flex: "0 0 40%",
         },
     })
 )
