@@ -10,7 +10,7 @@ const UseStyle = makeStyles((theme: Theme) =>
         wasteCard: {
             margin: "0px 10px 0px 0px",
             // width: "50%",
-            height: "300px",
+            height: "330px",
             flex: "0 0 50%",
             overflow: "scroll",
             scrollbarWidth: "none" /* Firefox */,
